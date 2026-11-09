@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHead from "../components/PageHead.astro";
+import { site } from "../config/site";
+
+const subject = "Enquiry from the ACE Labs website";
+const body = [
+  "Hi,",
+  "",
+  "What I am trying to fix:",
+  "",
+  "What I have tried so far:",
+  "",
+  "Links, if any:",
+].join("\n");
+
+const mailto = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with ACE Labs by email."
+>
+  <PageHead
+    tag="Contact"
+    title="What are you trying to fix?"
+    lead="Bring a prototype, a technical decision, or a workflow that should work better."
+  />
+
+  <section class="flush">
+    <div class="wrap two">
+      <div class="card mail-card">
+        <span class="tag">Email</span>
+        <p class="address">{site.email}</p>
+        <div class="actions">
+          <a class="btn" href={mailto}>Write an email</a>
+          <button class="btn ghost" type="button" data-copy-email={site.email}>Copy address</button>
+        </div>
+        <p class="copy-status" data-copy-status role="status" aria-live="polite"></p>
+      </div>
+
+      <div>
+        <span class="tag">What helps</span>
+        <h2>A short message is enough.</h2>
+        <ul class="list">
+          <li>What you are trying to build or fix.</li>
+          <li>What you have already tried.</li>
+          <li>Any links, such as a repository, a document or a demo.</li>
+          <li>Roughly when you need it to work.</li>
+        </ul>
+        <p>The button opens your mail app with these prompts filled in.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { initCopyEmail } from "../scripts/copy-email";
+  initCopyEmail();
+</script>

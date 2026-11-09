@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { url } from "../utils/url";
+---
+
+<BaseLayout title="Page not found" noindex>
+  <section class="flush not-found">
+    <div class="wrap">
+      <h1>404</h1>
+      <p>That page isn't here.</p>
+      <p><a class="btn" href={url()}>Back to ACE Labs</a></p>
+    </div>
+  </section>
+</BaseLayout>

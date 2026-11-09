@@ -1,0 +1,416 @@
+/* Reusable pieces. Each block matches a component in src/components. */
+
+/* ---------- Header and navigation ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 60px;
+  font-family: var(--font-ui);
+}
+
+.nav .logo {
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.nav .logo span {
+  color: var(--accent);
+}
+
+.nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.nav ul a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.nav ul a:hover,
+.nav ul a[aria-current="page"] {
+  color: var(--fg);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--fg);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font: 600 14px var(--font-ui);
+  cursor: pointer;
+}
+
+@media (max-width: 860px) {
+  .nav {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .nav-toggle {
+    display: inline-block;
+  }
+
+  .nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    order: 5;
+  }
+
+  .nav ul.open {
+    display: flex;
+  }
+
+  .nav ul a {
+    display: block;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .nav > .btn {
+    display: none;
+  }
+}
+
+/* ---------- Buttons and labels ---------- */
+.btn {
+  display: inline-block;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 11px 20px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  font: 600 15px var(--font-ui);
+  border: 1px solid var(--fg);
+  cursor: pointer;
+}
+
+.btn.ghost {
+  background: none;
+  color: var(--fg);
+  border-color: var(--line);
+}
+
+.tag {
+  display: block;
+  font: 700 12px var(--font-ui);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.lead {
+  font-size: 20px;
+  color: var(--muted);
+  max-width: 640px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.card p,
+.card li {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.card p {
+  margin: 0;
+}
+
+.card ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+
+.card .tag {
+  margin-bottom: 8px;
+}
+
+a.card {
+  display: block;
+  text-decoration: none;
+}
+
+a.card:hover {
+  border-color: var(--accent);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--dark-bg);
+  color: var(--dark-fg);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--dark-line);
+}
+
+.hero .lead {
+  color: var(--dark-muted);
+}
+
+.hero .tag,
+.hero h1 em {
+  color: var(--dark-accent);
+  font-style: normal;
+}
+
+.hero .btn {
+  background: var(--dark-accent);
+  border-color: var(--dark-accent);
+  color: #151614;
+}
+
+.hero .btn.ghost {
+  background: none;
+  border-color: #3a3c35;
+  color: var(--dark-fg);
+}
+
+.hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.hero canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+}
+
+.pillars {
+  display: grid;
+  gap: 14px;
+}
+
+.pillars div {
+  border-left: 3px solid var(--dark-accent);
+  padding-left: 14px;
+  color: var(--dark-muted);
+}
+
+.pillars b {
+  display: block;
+  font: 800 28px var(--font-ui);
+  color: var(--dark-accent);
+}
+
+@media (max-width: 860px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Page heading (inner pages) ---------- */
+.page-head {
+  padding: 64px 0 48px;
+  border-bottom: 1px solid var(--line);
+}
+
+.page-head h1 {
+  margin-bottom: 14px;
+}
+
+/* ---------- Lists, FAQ, notes ---------- */
+.list {
+  padding-left: 20px;
+}
+
+.list li {
+  margin-bottom: 10px;
+}
+
+details {
+  border-top: 1px solid var(--line);
+  padding: 16px 0;
+}
+
+details:last-of-type {
+  border-bottom: 1px solid var(--line);
+}
+
+summary {
+  cursor: pointer;
+  font: 600 17px var(--font-ui);
+}
+
+details p {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.post-link {
+  display: block;
+  text-decoration: none;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+}
+
+.post-link:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.post-link:hover h3 {
+  color: var(--accent);
+}
+
+.post-link p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.meta {
+  font: 13px var(--font-ui);
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ---------- Founder card ---------- */
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--line);
+  display: grid;
+  place-items: center;
+  font: 700 22px var(--font-ui);
+  margin-bottom: 12px;
+}
+
+/* ---------- Blueprint cards ---------- */
+.blueprint dt {
+  font: 700 12px var(--font-ui);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 14px;
+}
+
+.blueprint dd {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.blueprint dd ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.note-banner {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  color: var(--muted);
+  font: 15px var(--font-ui);
+  margin-top: 22px;
+}
+
+/* ---------- Article body (notes) ---------- */
+.prose {
+  max-width: 680px;
+}
+
+.prose h2 {
+  font-size: 26px;
+  margin-top: 34px;
+}
+
+.prose p,
+.prose li {
+  font-size: 18px;
+}
+
+/* ---------- Contact ---------- */
+.mail-card {
+  max-width: 560px;
+}
+
+.mail-card .address {
+  font: 700 clamp(20px, 4vw, 28px) var(--font-ui);
+  word-break: break-all;
+  margin: 8px 0 18px;
+}
+
+.copy-status {
+  font: 14px var(--font-ui);
+  color: var(--muted);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 36px 0;
+  font: 14px var(--font-ui);
+  color: var(--muted);
+}
+
+.site-footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---------- 404 ---------- */
+.not-found {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.not-found h1 {
+  font-size: 72px;
+  margin: 0;
+}
+
+/* ---------- Small modifiers ---------- */
+.note-banner.no-top {
+  margin-top: 0;
+}
+
+.founder-card {
+  max-width: 520px;
+  margin-top: 24px;
+}
+
+.copy-status {
+  margin-top: 12px;
+}

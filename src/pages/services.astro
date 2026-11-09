@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHead from "../components/PageHead.astro";
+import Cta from "../components/Cta.astro";
+import { services, engagement } from "../data/services";
+---
+
+<BaseLayout
+  title="Services"
+  description="Applied AI, cloud modernization, legacy system transformation and technical advisory from ACE Labs."
+>
+  <PageHead
+    tag="Services"
+    title="Bring the hard part."
+    lead="Four areas of work, from a first prototype to a system your team runs on its own."
+  />
+
+  <section>
+    <div class="wrap">
+      <div class="grid">
+        {
+          services.map((service, index) => (
+            <div class="card" id={service.id}>
+              <span class="tag">{String(index + 1).padStart(2, "0")}</span>
+              <h3>{service.title}</h3>
+              <p>{service.summary}</p>
+              <ul>
+                {service.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="tag">How an engagement works</span>
+      <h2>Start small, scale when it works.</h2>
+      <div class="grid">
+        {
+          engagement.map((step) => (
+            <div class="card">
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHead from "../../components/PageHead.astro";
+import { url } from "../../utils/url";
+import { readingTime } from "../../utils/reading-time";
+
+const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Notes"
+  description="Field notes on AI, cloud and engineering from ACE Labs."
+>
+  <PageHead tag="Notes" title="Thinking out loud." lead="Field notes on AI, cloud and engineering." />
+
+  <section class="flush">
+    <div class="wrap">
+      {
+        notes.map((note) => (
+          <a class="post-link" href={url(`notes/${note.id}/`)}>
+            <h3>{note.data.title}</h3>
+            <p>{note.data.description}</p>
+            <p class="meta">
+              {note.data.category} · {readingTime(note.body ?? "")} min read
+            </p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

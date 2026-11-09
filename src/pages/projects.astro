@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHead from "../components/PageHead.astro";
+import Cta from "../components/Cta.astro";
+import { industries } from "../data/blueprints";
+---
+
+<BaseLayout
+  title="Projects"
+  description="Project blueprints from ACE Labs: reference designs for QMS, ERP, document processing and SaaS systems."
+>
+  <PageHead
+    tag="Projects"
+    title="Project blueprints."
+    lead="The kinds of systems the lab designs, written the way a project would be scoped: the problem, what gets built, and the outcome aimed for."
+  />
+
+  <section>
+    <div class="wrap">
+      <p class="note-banner no-top">
+        These are reference designs and ideas. They are not past client work.
+      </p>
+    </div>
+  </section>
+
+  {
+    industries.map((industry) => (
+      <section id={industry.id}>
+        <div class="wrap">
+          <span class="tag">{industry.title}</span>
+          <h2>{industry.summary}</h2>
+          <div class="grid">
+            {industry.blueprints.map((blueprint) => (
+              <article class="card blueprint">
+                <h3>{blueprint.title}</h3>
+                <dl>
+                  <dt>Problem</dt>
+                  <dd>{blueprint.problem}</dd>
+                  <dt>What gets built</dt>
+                  <dd>
+                    <ul>
+                      {blueprint.build.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                  <dt>Target outcome</dt>
+                  <dd>{blueprint.outcome}</dd>
+                </dl>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <Cta title="Got a project?" text="Tell the lab what you need to build or fix, and you will get an honest answer about whether and how it can help." />
+</BaseLayout>

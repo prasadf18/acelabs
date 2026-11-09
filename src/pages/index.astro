@@ -1,0 +1,188 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NetworkCanvas from "../components/NetworkCanvas.astro";
+import FaqList from "../components/FaqList.astro";
+import Cta from "../components/Cta.astro";
+import { services, engagement } from "../data/services";
+import { industries } from "../data/blueprints";
+import { faqs } from "../data/faq";
+import { site } from "../config/site";
+import { url } from "../utils/url";
+
+const notes = (await getCollection("notes", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <NetworkCanvas />
+    <div class="wrap hero-inner">
+      <div>
+        <span class="tag">Independent technology & product lab</span>
+        <h1>We build and modernize <em>the systems work runs on.</em></h1>
+        <p class="lead">
+          {site.name} works on applied AI, cloud and software engineering, with a focus on clear
+          systems that a team can read, run and own.
+        </p>
+        <div class="actions">
+          <a class="btn" href={url("contact/")}>Get in touch</a>
+          <a class="btn ghost" href={url("projects/")}>See project blueprints</a>
+        </div>
+      </div>
+      <div class="pillars">
+        <div><b>A: AI</b>Applied AI that solves a real problem and is tested against real failures.</div>
+        <div><b>C: Cloud</b>Reliable, secure, cost-aware infrastructure that scales and recovers.</div>
+        <div><b>E: Engineering</b>Clean software and automation that a team can own.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="tag">The problem</span>
+      <h2>Real systems break at the edges.</h2>
+      <p class="lead">
+        Most businesses do not lack ideas. They lack software that matches how the work actually
+        happens.
+      </p>
+      <div class="grid">
+        <div class="card">
+          <h3>Knowledge lives in people</h3>
+          <p>
+            Procedures, approvals and exceptions are held in spreadsheets, emails and one person's
+            memory.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Tools don't talk</h3>
+          <p>
+            Quality, finance, inventory and customer data sit in separate places, reconciled by
+            hand.
+          </p>
+        </div>
+        <div class="card">
+          <h3>AI stays a pilot</h3>
+          <p>
+            Demos impress, but without data, evaluation and integration they never reach daily use.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap two">
+      <div>
+        <span class="tag">Another way</span>
+        <h2>It doesn't have to be this hard.</h2>
+        <p class="lead">
+          Imagine a new workflow that goes live quickly, audits and reports that come straight from
+          the system, and AI doing the repetitive reading and sorting while people make the
+          decisions.
+        </p>
+      </div>
+      <div>
+        <span class="tag">The approach</span>
+        <ul class="list">
+          <li>
+            <b>Map the process first.</b> Learn how the work really runs before designing anything.
+          </li>
+          <li>
+            <b>Build the smallest useful system.</b> Ship it early and test it with real users.
+          </li>
+          <li>
+            <b>Hand it over properly.</b> Documentation, evaluations and a team that can run it.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="tag">Services</span>
+      <h2>Bring the hard part.</h2>
+      <div class="grid">
+        {
+          services.map((service, index) => (
+            <div class="card">
+              <span class="tag">{String(index + 1).padStart(2, "0")}</span>
+              <h3>{service.title}</h3>
+              <p>{service.summary}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="actions mt">
+        <a class="btn ghost" href={url("services/")}>Explore services</a>
+        <a href={url("systems/")}>Systems in focus →</a>
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="tag">How an engagement works</span>
+      <h2>Start small, scale when it works.</h2>
+      <div class="grid">
+        {
+          engagement.map((step) => (
+            <div class="card">
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="tag">Industries</span>
+      <h2>Where the work applies.</h2>
+      <div class="grid">
+        {
+          industries.map((industry) => (
+            <a class="card" href={url(`projects/#${industry.id}`)}>
+              <h3>{industry.title}</h3>
+              <p>{industry.summary}</p>
+            </a>
+          ))
+        }
+      </div>
+      <p class="mt"><a href={url("projects/")}>See project blueprints →</a></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="tag">Notes</span>
+      <h2>Thinking out loud.</h2>
+      <div>
+        {
+          notes.map((note) => (
+            <a class="post-link" href={url(`notes/${note.id}/`)}>
+              <h3>{note.data.title}</h3>
+              <p>{note.data.description}</p>
+            </a>
+          ))
+        }
+      </div>
+      <p class="mt"><a href={url("notes/")}>All notes →</a></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="tag">FAQ</span>
+      <h2>Common questions.</h2>
+      <FaqList items={faqs.slice(0, 4)} />
+      <p class="mt"><a href={url("about/#faq")}>More questions →</a></p>
+    </div>
+  </section>
+
+  <Cta />
+</BaseLayout>

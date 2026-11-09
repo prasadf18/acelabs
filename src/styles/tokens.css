@@ -1,0 +1,38 @@
+/*
+ * Design tokens. Every colour, size and font in the site comes from here.
+ * To re-theme the site, change these values and nothing else.
+ */
+:root {
+  --bg: #f6f5f1;
+  --fg: #171815;
+  --muted: #62645d;
+  --card: #ffffff;
+  --line: #dedcd3;
+  --accent: #c8501e;
+
+  --dark-bg: #0e0f0d;
+  --dark-fg: #f1f0ea;
+  --dark-muted: #a3a59b;
+  --dark-line: #2f312b;
+  --dark-accent: #ff8a57;
+
+  --font-body: Georgia, "Times New Roman", serif;
+  --font-ui: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, Menlo, Consolas, monospace;
+
+  --radius: 14px;
+  --radius-pill: 999px;
+  --max-width: 1040px;
+  --gutter: 22px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151614;
+    --fg: #f1f0ea;
+    --muted: #a3a59b;
+    --card: #1d1e1b;
+    --line: #2f312b;
+    --accent: #ff8a57;
+  }
+}

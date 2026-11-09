@@ -1,0 +1,22 @@
+---
+import { url } from "../utils/url";
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+
+const {
+  title = "What are you trying to fix?",
+  text = "Bring a prototype, a technical decision, or a workflow that should work better.",
+} = Astro.props;
+---
+
+<section class="flush">
+  <div class="wrap">
+    <span class="tag">Get in touch</span>
+    <h2>{title}</h2>
+    <p class="lead">{text}</p>
+    <a class="btn" href={url("contact/")}>Start a conversation</a>
+  </div>
+</section>

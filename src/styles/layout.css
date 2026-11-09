@@ -1,0 +1,60 @@
+/* Page structure: containers, sections and grids. */
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+section {
+  padding: 72px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+section.flush {
+  border-bottom: 0;
+}
+
+.grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-top: 28px;
+}
+
+.two {
+  display: grid;
+  gap: 36px;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-family: var(--font-ui);
+  z-index: 20;
+}
+
+.skip-link:focus {
+  left: 8px;
+}
+
+@media (max-width: 760px) {
+  section {
+    padding: 52px 0;
+  }
+
+  .two {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small spacing helpers */
+.mt {
+  margin-top: 22px;
+}

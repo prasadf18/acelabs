@@ -1,0 +1,41 @@
+---
+import { site } from "../config/site";
+import { url } from "../utils/url";
+
+const current = Astro.url.pathname;
+const isActive = (href: string) => current.startsWith(url(href));
+---
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="logo" href={url()}>ACE<span>.</span>LABS</a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-list"
+        data-nav-toggle
+      >
+        Menu
+      </button>
+      <ul id="nav-list" data-nav-list>
+        {
+          site.nav.map((item) => (
+            <li>
+              <a href={url(item.href)} aria-current={isActive(item.href) ? "page" : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="btn" href={url("contact/")}>Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  import { initNav } from "../scripts/nav";
+  initNav();
+</script>

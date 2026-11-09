@@ -1,0 +1,7 @@
+<canvas id="network" aria-hidden="true"></canvas>
+
+<script>
+  import { startNetwork } from "../scripts/network";
+  const canvas = document.getElementById("network");
+  if (canvas instanceof HTMLCanvasElement) startNetwork(canvas);
+</script>

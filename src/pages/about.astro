@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHead from "../components/PageHead.astro";
+import FaqList from "../components/FaqList.astro";
+import Cta from "../components/Cta.astro";
+import { faqs } from "../data/faq";
+import { site } from "../config/site";
+
+const principles = [
+  {
+    title: "Evidence over opinion",
+    text: "Every claim about a system gets a test.",
+  },
+  {
+    title: "Simple first",
+    text: "The smallest useful system beats the impressive one.",
+  },
+  {
+    title: "Built to be owned",
+    text: "If a team cannot run it, it is not finished.",
+  },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="ACE Labs is an independent technology and product innovation lab founded by Prasad Firame."
+>
+  <PageHead
+    tag="About"
+    title="An independent lab, run like an engineering practice."
+    lead={site.description}
+  />
+
+  <section>
+    <div class="wrap two">
+      <div>
+        <span class="tag">What ACE means</span>
+        <h2>AI, Cloud & Engineering.</h2>
+        <p>
+          Those are the three disciplines the lab brings together. Most real problems need all
+          three: data and models that work, infrastructure that stays up, and software that people
+          can maintain.
+        </p>
+      </div>
+      <div>
+        <span class="tag">How it works</span>
+        <h2>Built for handover.</h2>
+        <p>
+          The aim of every piece of work is a system the client's team can read, run and own, with
+          documentation and tests that make that possible.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="tag">Principles</span>
+      <h2>How the lab thinks.</h2>
+      <div class="grid">
+        {
+          principles.map((item) => (
+            <div class="card">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="tag">Who runs ACE Labs</span>
+      <h2>Founder.</h2>
+      <div class="card founder-card">
+        <div class="avatar" aria-hidden="true">{site.founder.initials}</div>
+        <h3>{site.founder.name}</h3>
+        <p><b>{site.founder.role}.</b> {site.founder.bio}</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <span class="tag">FAQ</span>
+      <h2>Questions people ask.</h2>
+      <FaqList items={faqs} />
+    </div>
+  </section>
+
+  <Cta />
+</BaseLayout>

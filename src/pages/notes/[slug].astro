@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Cta from "../../components/Cta.astro";
+import { url } from "../../utils/url";
+import { readingTime } from "../../utils/reading-time";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes", ({ data }) => !data.draft);
+  return notes.map((note) => ({ params: { slug: note.id }, props: { note } }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+---
+
+<BaseLayout title={note.data.title} description={note.data.description}>
+  <section class="flush">
+    <div class="wrap">
+      <p class="meta"><a href={url("notes/")}>← All notes</a></p>
+      <span class="tag">{note.data.category}</span>
+      <h1>{note.data.title}</h1>
+      <p class="meta">{readingTime(note.body ?? "")} min read</p>
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </section>
+  <Cta title="Working on something similar?" text="Get in touch and say what you are trying to fix." />
+</BaseLayout>

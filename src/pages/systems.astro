@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHead from "../components/PageHead.astro";
+import Cta from "../components/Cta.astro";
+import { systems } from "../data/systems";
+import { url } from "../utils/url";
+---
+
+<BaseLayout
+  title="Systems"
+  description="The kinds of systems ACE Labs focuses on: QMS, ERP, SaaS platforms and healthcare software."
+>
+  <PageHead
+    tag="Systems"
+    title="Serious systems, built carefully."
+    lead="The lab starts by understanding the process, then builds the software. These are the kinds of systems it focuses on."
+  />
+
+  <section>
+    <div class="wrap">
+      <div class="grid">
+        {
+          systems.map((area) => (
+            <div class="card" id={area.id}>
+              <h3>{area.title}</h3>
+              <p>{area.summary}</p>
+              <ul>
+                {area.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+      <p class="note-banner">
+        This page describes focus areas, not delivered client work. For examples of how a project
+        would be scoped, see the <a href={url("projects/")}>project blueprints</a>.
+      </p>
+    </div>
+  </section>
+
+  <Cta title="Have a system in mind?" text="Say what you need to build or fix, and what you have already tried." />
+</BaseLayout>

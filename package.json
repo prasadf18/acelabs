@@ -1,0 +1,19 @@
+{
+  "name": "acelabs",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Website for ACE Labs, an independent technology and product innovation lab.",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^6.1.8"
+  }
+}
